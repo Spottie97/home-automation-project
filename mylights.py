@@ -12,15 +12,12 @@ class HueLight:
         response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
         return response.status_code == 200
 
-    # Turn light on
     def turn_on(self):
         return self.set_state(True)
 
-    # Turn light off
     def turn_off(self):
         return self.set_state(False)
     
-    #Change color of light
     def set_color(self, hue, sat):
         data = {'on': True, 'sat': sat, 'hue': hue}
         response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
