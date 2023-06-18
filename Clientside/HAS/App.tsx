@@ -1,13 +1,16 @@
 // App.tsx
 
-import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
-import { Button } from 'react-native-elements';
-import styles from './AppStyles';  // import styles
+import React, {useState, useEffect} from 'react';
+import {View, Text, ActivityIndicator, Switch} from 'react-native';
+import {Button} from 'react-native-elements';
+import styles from './AppStyles';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const App: React.FC = () => {
   const [isLoading, setLoading] = useState(true);
   const [on, setOn] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // replace this with the actual function to check server connection
   const checkServerConnection = (): Promise<void> => {
@@ -17,7 +20,7 @@ const App: React.FC = () => {
       }, 2000); // mock a delay for demonstration
     });
   };
-  
+
   useEffect(() => {
     checkServerConnection().then(() => setLoading(false));
   }, []);
@@ -38,25 +41,45 @@ const App: React.FC = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.loadingScreen}>
-        <ActivityIndicator size="large" color="#9b59b6" />
+      <View style={isDarkMode ? styles.darkLoadingScreen : styles.lightLoadingScreen}>
+        <ActivityIndicator size="large" color={isDarkMode ? '#ecf0f1' : '#9b59b6'} />
         <Text style={styles.loadingText}>Establishing connection...</Text>
       </View>
     );
   }
-
+  
   return (
-    <View style={styles.homeScreen}>
-      {Array.from({ length: 6 }).map((_, i) => (
-        <Button
-          key={i}
-          onPress={toggleLight}
-          title={on ? 'Turn off' : 'Turn on'}
-          buttonStyle={styles.button}
+    <View style={isDarkMode ? styles.darkHomeScreen : styles.lightHomeScreen}>
+      <View style={styles.darkModeToggle}>
+        <Text style={isDarkMode ? styles.darkModeText : styles.lightModeText}>
+          Dark Mode
+        </Text>
+        <Switch
+          trackColor={{false: '#767577', true: '#81b0ff'}}
+          thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => setIsDarkMode(!isDarkMode)}
+          value={isDarkMode}
         />
+      </View>
+      {Array.from({length: 3}).map((_, i) => (
+        <View key={i} style={styles.buttonRow}>
+          <Button
+            onPress={toggleLight}
+            buttonStyle={styles.button}
+            title={on ? 'Turn off' : 'Turn on'}
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            onPress={toggleLight}
+            buttonStyle={styles.button}
+            title={on ? 'Turn off' : 'Turn on'}
+            titleStyle={styles.buttonText}
+          />
+        </View>
       ))}
     </View>
-  );
+  );  
 };
 
 export default App;
