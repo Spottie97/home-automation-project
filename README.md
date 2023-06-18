@@ -28,15 +28,33 @@ Since this project is being developed on a different machine then the one its go
 To do this you can follow these steps:
  1. Create a new service file for your script with sudo nano /etc/systemd/system/mylights.service. Replace "mylights" with the name you want to give your service.
  2. In the editor that opens, add the following:
+```
+[Unit]
+Description=My Lights Service
+After=multi-user.target
 
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /path/to/your/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
  Replace /path/to/your/main.py with the absolute path to your main.py script. The Restart=always directive means the service will restart if it ever crashes or stops for any reason.
  3. Save the file and exit the editor by pressing Ctrl+X, then Y to confirm saving the changes, and finally Enter to confirm the file name.
  4. Enable the service so it starts on boot:
-
+```
+sudo systemctl enable mylights.service
+```
  5. Start the service now so you don't have to reboot:
-
+```
+sudo systemctl start mylights.service
+```
  6. Check the status of your service to make sure it's running correctly:
-
+```
+sudo systemctl status mylights.service
+```
 The status command will show you if the service is active and running, and also show the latest log messages from your script. If there are any errors, they will appear here.
 
 Please note that this will run your script as root. If you want to run it as a different user, you can add a User=username line under the [Service] section, replacing username with the name of the user.
