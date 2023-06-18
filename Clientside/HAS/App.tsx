@@ -5,6 +5,7 @@ export default function App() {
   const [on, setOn] = useState(false);
 
   const toggleLight = () => {
+    //Replace with actual IP of Raspberry Pi
     fetch('http://raspberrypi.local/lights', {
       method: 'POST',
       headers: {
