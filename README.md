@@ -7,7 +7,7 @@ The aim of this project is to develop a server on my Raspberry Pi that can Autom
  - Ability to open blinds, I build my own electric blinds, I will post a link to them once I get to this point.
  - Ability to communicate with items with in the house using voice commands via ChatGPT
  - Ability to control my speakers volume, skip, play, pause, voice search, connect to my phone to access my spotify playlist
- - Ability to controll my cooking equipment e.g. stove, rice cooker etc.
+ - Ability to control my cooking equipment e.g. stove, rice cooker etc.
  - Ability to turn TV on/off.
  - Ability to know my location in the house at all times and then pick the speaker closest to me to respond to my voice command.
  - Ability to Google/Bing something for me
