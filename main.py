@@ -14,3 +14,9 @@ light3 = HueLight(bridge_ip_address, username, 'light id 3')
 light1.turn_on()
 light2.turn_off()
 light3.turn_on()
+
+# Change light color
+if light1.set_color(0, 254):
+    print('Changed color of light1 to red')
+else:
+    print('Failed to change color of light1')
