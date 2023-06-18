@@ -23,6 +23,14 @@ def control_lights():
             light1.set_color(data['light1']['color']['hue'], data['light1']['color']['sat'])
 
     # Control light 2
+    if 'light2' in data:
+        if 'on' in data['light2']:
+            if data['light2']['on']:
+                light1.turn_on()
+            else:
+                light1.turn_off()
+        if 'color' in data['light2']:
+            light1.set_color(data['light2']['color']['hue'], data['light2']['color']['sat'])
     # You can add similar blocks for light 2 and light 3
     # ...
 
