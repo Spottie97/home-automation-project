@@ -1,6 +1,7 @@
 import json
 from flask import Flask, request
 from mylights import HueLight
+import openai
 
 app = Flask(__name__)
 
@@ -12,6 +13,13 @@ with open('config.json', 'r') as f:
 bridge_ip = config['bridge_ip']
 username = config['username']
 lights_ids = config['lights']
+
+# Load the API key from a JSON file
+with open('api_key.json', 'r') as f:
+    api_config = json.load(f)
+
+# Set your API key
+openai.api_key = api_config['api_key']
 
 # Create the HueLight objects
 light1 = HueLight(bridge_ip, username, lights_ids[0])
@@ -51,7 +59,27 @@ def control_lights():
                 light3.turn_off()
         if 'color' in data['light3']:
             light3.set_color(data['light3']['color']['hue'], data['light3']['color']['sat'])
+
     return 'OK'
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    # Get the user's message from the request data
+    data = request.get_json()
+    user_message = data['message']
+
+    # Generate a response using the OpenAI API
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=user_message,
+        max_tokens=60
+    )
+
+    # Extract the generated message
+    ai_message = response.choices[0].text.strip()
+
+    # Return the AI's message
+    return {'message': ai_message}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
