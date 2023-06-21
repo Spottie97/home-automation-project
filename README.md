@@ -1,6 +1,6 @@
 # Home Automation Project
 ## Description
-The aim of this project is to develop a server on my Raspberry Pi that can Automate things in my house. I will update the project as I move along. I will be starting with the lights. Since this project will be a server I would like it to be accessible from anywhere in the world. Thus I will need to build an API for this, I will also develop a mobile app to control the API as I find it be more convient.
+The aim of this project is to develop a server on my Raspberry Pi that can Automate things in my house. I will update the project as I move along. I will be starting with the lights. Since this project will be an app I would like it to be accessible from anywhere in the world. Thus I will need to build an API for this, I will also develop a mobile app to control the API as I find it be more convient.
 
 ## Phases of Development
  - Ability to turn lights on/off. The lights I use are the Philips Hue lights as they connect to the WiFi.
