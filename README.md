@@ -15,6 +15,7 @@ The aim of this project is to develop a server on my Raspberry Pi that can Autom
 
 ## Tools and Languages used
  - React Native
+ - Java
  - Python
  - ChatGPT OpenAi API
  - Google API
