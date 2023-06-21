@@ -1,0 +1,9 @@
+- Start UI design
+- Edit Homepage 
+- Create Sub categories for all the different functions of the application
+- Create API serverside for the categories
+- Create a run on startup script, reboot script.
+- Add security elements to the app and server.
+- Add Login/Sign-in
+- Create Docker container to deploy the system
+- Create light weight database for login and general info.
