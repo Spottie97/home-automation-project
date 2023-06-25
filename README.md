@@ -22,7 +22,12 @@ The aim of this project is to develop a server on my Raspberry Pi that can Autom
  - Spotify API
 
 ## How to use
-Currently this app isn't in working state and I will update this as soon as its in working state.
+Currently not in working state but this is how it will work.
+App
+- Create an account or sign into account
+- Fill in the config page with API keys and Id's
+- Save changes
+- Done
 
 ## Deployment Guide
 Since this project is being developed on a different machine then the one its going to run we will create the .ini file once it has been deployed on the Raspberry Pi.
