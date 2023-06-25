@@ -1,6 +1,0 @@
-{
-    "bridge_ip": "actual bridge ip",
-    "username": "actual username",
-    "lights": ["light id 1", "light id 2", "light id 3"]
-  }
-  
