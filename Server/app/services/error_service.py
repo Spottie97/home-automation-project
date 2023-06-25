@@ -23,7 +23,9 @@ class ErrorService:
         3002: "An error occurred while loading config.json.",
         3003: "API configuration file (api_key.json) not found.",
         3004: "An error occurred while loading api_key.json.",
-        3005: "An error occurred while starting the Flask application."
+        3005: "An error occurred while starting the Flask application.",
+        3006: "Required environment variable not found.",
+        3007: "An error occurred while processing environment variables.",
     }
 
     @classmethod
