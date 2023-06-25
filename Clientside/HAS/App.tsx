@@ -15,31 +15,48 @@ const App: React.FC = () => {
   const [on, setOn] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // replace this with the actual function to check server connection
-  const checkServerConnection = (): Promise<void> => {
-    return new Promise<void>(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, 2000); // mock a delay for demonstration
-    });
+  const checkServerConnection = async (): Promise<void> => {
+    try {
+      const response = await fetch('http://<your_server_ip>:5000', {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        throw new Error('Server not reachable');
+      }
+
+      setLoading(false);
+    } catch (error) {
+      // Handle or display the error as needed
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    checkServerConnection().then(() => setLoading(false));
+    checkServerConnection();
   }, []);
 
-  const toggleLight = () => {
-    //Replace with actual IP of Raspberry Pi
-    fetch('http://raspberrypi.local/lights', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        on: !on,
-      }),
-    });
-    setOn(!on);
+  const toggleLight = async () => {
+    try {
+      const response = await fetch('http://<your_server_ip>:5000/lights', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          on: !on,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error in light toggling');
+      }
+
+      setOn(!on);
+    } catch (error) {
+      // Handle or display the error as needed
+      console.log(error);
+    }
   };
 
   if (isLoading) {
