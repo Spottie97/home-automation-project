@@ -1,5 +1,7 @@
+from app.services.error_service import ErrorService
 import requests
 import json
+import logging
 
 class HueLight:
     def __init__(self, bridge_ip_address, username, light_id):
@@ -9,8 +11,13 @@ class HueLight:
 
     def set_state(self, on):
         data = {'on': on}
-        response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
-        return response.status_code == 200
+        try:
+            response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            ErrorService.raise_error(2004, additional_info=str(e))
+            return False
+        return True
 
     def turn_on(self):
         return self.set_state(True)
@@ -20,5 +27,10 @@ class HueLight:
     
     def set_color(self, hue, sat):
         data = {'on': True, 'sat': sat, 'hue': hue}
-        response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
-        return response.status_code == 200
+        try:
+            response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            ErrorService.raise_error(2005, additional_info=str(e))
+            return False
+        return True
