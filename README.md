@@ -1,6 +1,6 @@
 # Home Automation Project
 ## Description
-The aim of this project is to develop a server on my Raspberry Pi that can Automate things in my house. I will update the project as I move along. I will be starting with the lights. Since this project will be a server I would like it to be accessible from anywhere in the world. Thus I will need to build an API for this, I will also develop a mobile app to control the API as I find it be more convient.
+The aim of this project is to develop a server on my Raspberry Pi that can Automate things in my house. I will update the project as I move along. I will be starting with the lights. Since this project will be an app I would like it to be accessible from anywhere in the world. Thus I will need to build an API for this, I will also develop a mobile app to control the API as I find it be more convient.
 
 ## Phases of Development
  - Ability to turn lights on/off. The lights I use are the Philips Hue lights as they connect to the WiFi.
@@ -15,13 +15,19 @@ The aim of this project is to develop a server on my Raspberry Pi that can Autom
 
 ## Tools and Languages used
  - React Native
+ - Java
  - Python
  - ChatGPT OpenAi API
  - Google API
  - Spotify API
 
 ## How to use
-Currently this app isn't in working state and I will update this as soon as its in working state.
+Currently not in working state but this is how it will work.
+App
+- Create an account or sign into account
+- Fill in the config page with API keys and Id's
+- Save changes
+- Done
 
 ## Deployment Guide
 Since this project is being developed on a different machine then the one its going to run we will create the .ini file once it has been deployed on the Raspberry Pi.
