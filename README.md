@@ -17,17 +17,22 @@ The aim of this project is to develop a server on my Raspberry Pi that can Autom
  - React Native
  - Java
  - Python
- - ChatGPT OpenAi API
+ - HuggingFace LLM API
  - Google API
  - Spotify API
+ - Philip Hue API
 
 ## How to use
 Currently not in working state but this is how it will work.
 App
 - Create an account or sign into account
-- Fill in the config page with API keys and Id's
+- You will now see a blank page with a "+" icon in the top right of the screen.
+- Interact withe "+" icon
+- This will prompt you to add a new device, currently it limited to specific device but just follow the on screen instructions to add a new device.
 - Save changes
-- Done
+- You will now see a new icon appear on the once blank page, this is the device you just added.
+- You can now tap on the icon and it will take you to a new page were you can controll this device from.
+- Thats it, you all set up.
 
 ## Deployment Guide
 Since this project is being developed on a different machine then the one its going to run we will create the .ini file once it has been deployed on the Raspberry Pi.
