@@ -4,7 +4,6 @@ from app.services.error_service import ErrorService, CustomError
 
 light_controller = Blueprint('light_controller', __name__)
 
-# Define lights as a global variable
 lights = None
 
 @light_controller.before_app_first_request

@@ -5,9 +5,8 @@ class LightService:
     @staticmethod
     def create_lights(bridge_ip, username, lights_ids):
         try:
-            light1 = HueLightModel(bridge_ip, username, lights_ids[0])
-            light2 = HueLightModel(bridge_ip, username, lights_ids[1])
-            light3 = HueLightModel(bridge_ip, username, lights_ids[2])
-            return light1, light2, light3
+            lights = [HueLightModel(bridge_ip, username, light_id) for light_id in lights_ids]
+            return lights
         except Exception as e:
             ErrorService.raise_error(2003, additional_info=str(e))
+
