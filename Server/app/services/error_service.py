@@ -16,6 +16,9 @@ class ErrorService:
         2003: "Error creating lights.",
         2004: "Error setting light state.",
         2005: "Error setting light color.",
+        2006: "No 'state' field provided in the data.",
+        2007: "Invalid 'light_id' provided.",
+        2008: "Invalid 'state' provided.",
         #Blinds
 
         #Main

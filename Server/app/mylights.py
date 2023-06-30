@@ -14,10 +14,11 @@ class HueLight:
         try:
             response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
             response.raise_for_status()
+            response_data = response.json()
+            if 'error' in response_data[0]:
+                ErrorService.raise_error(2004, additional_info=response_data[0]['error'])
         except requests.exceptions.RequestException as e:
             ErrorService.raise_error(2004, additional_info=str(e))
-            return False
-        return True
 
     def turn_on(self):
         return self.set_state(True)
@@ -30,7 +31,8 @@ class HueLight:
         try:
             response = requests.put(f'http://{self.bridge_ip_address}/api/{self.username}/lights/{self.light_id}/state', data=json.dumps(data))
             response.raise_for_status()
+            response_data = response.json()
+            if 'error' in response_data[0]:
+                ErrorService.raise_error(2005, additional_info=response_data[0]['error'])
         except requests.exceptions.RequestException as e:
             ErrorService.raise_error(2005, additional_info=str(e))
-            return False
-        return True
