@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from app.services.chat_service import ChatService
-from app.services.error_service import ErrorService, CustomError
+from services.chat_service import ChatService
+from services.error_service import ErrorService, CustomError
 
 chat_controller = Blueprint('chat_controller', __name__)
 

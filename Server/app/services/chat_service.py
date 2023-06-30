@@ -1,5 +1,5 @@
 import openai
-from app.services.error_service import ErrorService
+from services.error_service import ErrorService
 
 class ChatService:
     @staticmethod

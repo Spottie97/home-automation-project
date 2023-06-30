@@ -1,5 +1,5 @@
-from app.models.huelight import HueLightModel
-from app.services.error_service import ErrorService
+from models.huelight import HueLightModel
+from services.error_service import ErrorService
 
 class LightService:
     @staticmethod

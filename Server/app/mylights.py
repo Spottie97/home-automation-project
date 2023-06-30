@@ -1,4 +1,4 @@
-from app.services.error_service import ErrorService
+from services.error_service import ErrorService
 import requests
 import json
 import logging

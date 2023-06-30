@@ -1,20 +1,20 @@
 from flask import Blueprint, request, current_app
-from app.services.light_service import LightService
-from app.services.error_service import ErrorService, CustomError
+from services.light_service import LightService
+from services.error_service import ErrorService, CustomError
 
 light_controller = Blueprint('light_controller', __name__)
 
 lights = None
 
-@light_controller.before_app_first_request
-def create_lights():
+@light_controller.before_request
+def init_lights():
     global lights
     try:
-        bridge_ip = current_app.config.get('BRIDGE_IP')
-        username = current_app.config.get('USERNAME')
-        lights_ids = current_app.config.get('LIGHT_IDS')  
-
-        lights = LightService.create_lights(bridge_ip, username, lights_ids)
+        if lights is None:
+            bridge_ip = current_app.config.get('BRIDGE_IP')
+            username = current_app.config.get('USERNAME')
+            lights_ids = current_app.config.get('LIGHT_IDS')  
+            lights = LightService.create_lights(bridge_ip, username, lights_ids)
     except Exception as e:
         ErrorService.raise_error(2003, additional_info=str(e))
 
@@ -49,3 +49,4 @@ def control_lights():
         return 'OK'
     except CustomError as e:
         return {'error': str(e), 'error_code': e.error_code}, 400
+
